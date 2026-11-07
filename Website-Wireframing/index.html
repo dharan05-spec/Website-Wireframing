@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Wireframes: Low-Fidelity</title>
+  <style>
+    /* Grayscale only: low-fidelity by design */
+    :root {
+      --ink: #1F1F1F;
+      --mid: #6B6B6B;
+      --line: #9A9A9A;
+      --block: #E6E6E6;
+      --block-dark: #CFCFCF;
+      --paper: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #F2F2F2;
+      padding: 40px 32px;
+    }
+    header.doc { max-width: 1280px; margin: 0 auto 32px; }
+    header.doc h1 { font-size: 26px; margin-bottom: 8px; }
+    header.doc p { color: var(--mid); font-size: 15px; max-width: 760px; }
+
+    .legend {
+      max-width: 1280px; margin: 0 auto 40px;
+      display: flex; gap: 24px; flex-wrap: wrap;
+      font-size: 13px; color: var(--mid);
+    }
+    .legend span { display: flex; align-items: center; gap: 8px; }
+    .sw { width: 18px; height: 14px; border: 1px solid var(--line); background: var(--block); }
+    .sw.dark { background: var(--block-dark); }
+    .sw.text { background: repeating-linear-gradient(to bottom, #9A9A9A 0 2px, transparent 2px 5px); border: none; }
+    .sw.cta { background: var(--ink); border: none; }
+
+    h2.section { font-size: 18px; max-width: 1280px; margin: 0 auto 16px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* Frame: desktop wireframe */
+    .frame {
+      max-width: 1280px; margin: 0 auto 56px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+    }
+    .frame-label {
+      background: var(--ink); color: var(--paper);
+      font-size: 13px; padding: 6px 12px; letter-spacing: 0.04em;
+    }
+
+    /* Navigation */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 32px; border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .logo-box { width: 120px; height: 32px; background: var(--block-dark); border: 1px dashed var(--line); font-size: 12px; color: var(--mid); display: flex; align-items: center; justify-content: center; }
+    .nav-items { display: flex; gap: 28px; font-size: 14px; color: var(--ink); }
+    .nav-items span { border-bottom: 2px solid transparent; padding-bottom: 4px; }
+    .nav-items span.active { border-bottom-color: var(--ink); font-weight: bold; }
+    .btn-ghost { border: 1.5px solid var(--ink); padding: 8px 18px; font-size: 14px; }
+    .btn-solid { background: var(--ink); color: var(--paper); padding: 8px 18px; font-size: 14px; }
+
+    /* Hero */
+    .hero {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+      padding: 56px 32px; align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .h-line { height: 18px; background: var(--block-dark); margin-bottom: 14px; }
+    .h-title { height: 40px; width: 90%; background: var(--block-dark); margin-bottom: 20px; }
+    .h-sub { height: 12px; width: 75%; background: var(--block); margin-bottom: 10px; }
+    .hero-img { height: 280px; background: var(--block); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--mid); font-size: 14px; position: relative; }
+    .hero-img::before, .hero-img::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top right, transparent calc(50% - 1px), var(--line) 50%, transparent calc(50% + 1px));
+    }
+    .hero-img::after { background: linear-gradient(to top left, transparent calc(50% - 1px), var(--line) 50%, transparent calc(50% + 1px)); }
+    .hero-img span { background: var(--paper); padding: 4px 10px; position: relative; z-index: 1; }
+    .cta-row { display: flex; gap: 14px; margin-top: 24px; }
+    .cta-primary { background: var(--ink); color: var(--paper); padding: 14px 26px; font-size: 15px; font-weight: bold; }
+    .cta-secondary { border: 1.5px solid var(--ink); padding: 14px 26px; font-size: 15px; }
+
+    /* Feature cards */
+    .features { padding: 48px 32px; border-bottom: 1px solid var(--line); }
+    .section-title-block { height: 22px; width: 260px; background: var(--block-dark); margin: 0 auto 10px; }
+    .section-sub-block { height: 12px; width: 420px; background: var(--block); margin: 0 auto 36px; }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .f-card { border: 1px solid var(--line); padding: 24px; }
+    .icon-x {
+      width: 44px; height: 44px; border: 1px solid var(--line); background: var(--block);
+      position: relative; margin-bottom: 16px;
+    }
+    .icon-x::before, .icon-x::after {
+      content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--line);
+    }
+    .icon-x::after { transform: rotate(90deg); }
+    .f-title { height: 14px; width: 60%; background: var(--block-dark); margin-bottom: 14px; }
+    .f-line { height: 9px; background: var(--block); margin-bottom: 8px; }
+    .f-line.short { width: 70%; }
+
+    /* Social proof */
+    .proof { padding: 40px 32px; border-bottom: 1px solid var(--line); background: #FAFAFA; }
+    .logo-row { display: flex; justify-content: space-around; gap: 16px; }
+    .logo-placeholder { width: 140px; height: 40px; background: var(--block-dark); border: 1px dashed var(--line); font-size: 11px; color: var(--mid); display: flex; align-items: center; justify-content: center; }
+    .testimonials { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .quote { border-left: 3px solid var(--ink); padding: 14px 18px; background: var(--paper); }
+    .quote .q-line { height: 9px; background: var(--block); margin-bottom: 8px; }
+    .quote .q-name { height: 10px; width: 120px; background: var(--block-dark); margin-top: 12px; }
+
+    /* Footer */
+    footer.site-footer { padding: 36px 32px; background: var(--block); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+    .footer-col .fh { height: 12px; width: 80px; background: var(--block-dark); margin-bottom: 14px; }
+    .footer-col .fl { height: 9px; width: 90%; background: var(--paper); margin-bottom: 9px; }
+    .footer-bottom { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); height: 14px; width: 40%; background: var(--block-dark); }
+
+    /* User flow */
+    .flow {
+      max-width: 1280px; margin: 0 auto 56px;
+      border: 2px solid var(--ink); background: var(--paper);
+      padding: 40px 32px;
+    }
+    .flow-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 36px; }
+    .flow-screen {
+      width: 220px; height: 150px; border: 1.5px solid var(--ink); background: var(--paper);
+      padding: 12px; position: relative;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .flow-screen .label { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+    .flow-screen .bar { height: 14px; background: var(--block-dark); }
+    .flow-screen .bar.dark { background: var(--ink); height: 16px; width: 60%; }
+    .flow-screen .blk { flex: 1; background: var(--block); }
+    .arrow { flex: 1; min-width: 60px; position: relative; height: 2px; background: var(--ink); }
+    .arrow::after {
+      content: ""; position: absolute; right: -2px; top: -5px;
+      border-left: 9px solid var(--ink); border-top: 6px solid transparent; border-bottom: 6px solid transparent;
+    }
+    .arrow-label { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--mid); white-space: nowrap; }
+    .arrow.back { background: transparent; border-top: 2px dashed var(--ink); }
+    .arrow.back::after { right: auto; left: -2px; border-left: none; border-right: 9px solid var(--ink); }
+
+    .notes { max-width: 1280px; margin: 0 auto 40px; font-size: 14px; color: var(--mid); line-height: 1.7; }
+    .notes strong { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <header class="doc">
+    <h1>Website Wireframes (Low-Fidelity)</h1>
+    <p>Structural wireframes for a web application. These show layout, content hierarchy, and user paths only. Colors, typography, and imagery are intentionally excluded.</p>
+  </header>
+
+  <div class="legend" aria-label="Legend">
+    <span><i class="sw"></i> Content block</span>
+    <span><i class="sw dark"></i> Heading block</span>
+    <span><i class="sw text"></i> Placeholder text</span>
+    <span><i class="sw cta"></i> Primary action</span>
+    <span>— Forward user flow</span>
+    <span>- - Return path</span>
+  </div>
+
+  <!-- 1. Landing page -->
+  <h2 class="section">Page 1: Landing page (desktop)</h2>
+  <div class="frame" aria-label="Landing page wireframe">
+    <div class="frame-label">Landing page · 1440 px</div>
+
+    <!-- Navigation -->
+    <nav class="nav" aria-label="Main navigation (wireframe)">
+      <div class="logo-box">LOGO</div>
+      <div class="nav-items">
+        <span class="active">Product</span>
+        <span>Features</span>
+        <span>Pricing</span>
+        <span>Resources</span>
+        <span>Contact</span>
+      </div>
+      <div style="display:flex; gap:12px;">
+        <div class="btn-ghost">Log in</div>
+        <div class="btn-solid">Sign up</div>
+      </div>
+    </nav>
+
+    <!-- Hero CTA -->
+    <section class="hero" aria-label="Hero section">
+      <div>
+        <div class="h-line" style="width: 30%;"></div>
+        <div class="h-title"></div>
+        <div class="h-title" style="width: 60%;"></div>
+        <div class="h-sub"></div>
+        <div class="h-sub" style="width: 55%;"></div>
+        <div class="cta-row">
+          <div class="cta-primary">Primary CTA</div>
+          <div class="cta-secondary">Secondary CTA</div>
+        </div>
+      </div>
+      <div class="hero-img"><span>Hero image placeholder</span></div>
+    </section>
+
+    <!-- Feature cards -->
+    <section class="features" aria-label="Feature cards">
+      <div class="section-title-block"></div>
+      <div class="section-sub-block"></div>
+      <div class="card-grid">
+        <div class="f-card">
+          <div class="icon-x"></div>
+          <div class="f-title"></div>
+          <div class="f-line"></div>
+          <div class="f-line"></div>
+          <div class="f-line short"></div>
+        </div>
+        <div class="f-card">
+          <div class="icon-x"></div>
+          <div class="f-title"></div>
+          <div class="f-line"></div>
+          <div class="f-line"></div>
+          <div class="f-line short"></div>
+        </div>
+        <div class="f-card">
+          <div class="icon-x"></div>
+          <div class="f-title"></div>
+          <div class="f-line"></div>
+          <div class="f-line"></div>
+          <div class="f-line short"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social proof -->
+    <section class="proof" aria-label="Social proof">
+      <div class="section-title-block"></div>
+      <div class="logo-row" style="margin-top: 24px;">
+        <div class="logo-placeholder">Client logo</div>
+        <div class="logo-placeholder">Client logo</div>
+        <div class="logo-placeholder">Client logo</div>
+        <div class="logo-placeholder">Client logo</div>
+        <div class="logo-placeholder">Client logo</div>
+      </div>
+      <div class="testimonials">
+        <div class="quote">
+          <div class="q-line"></div>
+          <div class="q-line"></div>
+          <div class="q-line" style="width: 70%;"></div>
+          <div class="q-name"></div>
+        </div>
+        <div class="quote">
+          <div class="q-line"></div>
+          <div class="q-line"></div>
+          <div class="q-line" style="width: 70%;"></div>
+          <div class="q-name"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer" aria-label="Footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo-box" style="background: var(--paper);">LOGO</div>
+          <div class="fl" style="margin-top: 14px; width: 70%;"></div>
+          <div class="fl" style="width: 55%;"></div>
+        </div>
+        <div class="footer-col">
+          <div class="fh"></div>
+          <div class="fl"></div><div class="fl"></div><div class="fl"></div>
+        </div>
+        <div class="footer-col">
+          <div class="fh"></div>
+          <div class="fl"></div><div class="fl"></div><div class="fl"></div>
+        </div>
+        <div class="footer-col">
+          <div class="fh"></div>
+          <div class="fl"></div><div class="fl"></div><div class="fl"></div>
+        </div>
+      </div>
+      <div class="footer-bottom"></div>
+    </footer>
+  </div>
+
+  <!-- 2. User flow -->
+  <h2 class="section">User paths between screens</h2>
+  <div class="flow" aria-label="User flow diagram">
+    <div class="flow-row">
+      <div class="flow-screen">
+        <div class="label">1. Landing</div>
+        <div class="bar dark"></div>
+        <div class="bar"></div>
+        <div class="blk"></div>
+      </div>
+      <div class="arrow"><span class="arrow-label">Click "Sign up"</span></div>
+      <div class="flow-screen">
+        <div class="label">2. Sign up</div>
+        <div class="bar dark"></div>
+        <div class="bar"></div>
+        <div class="blk"></div>
+      </div>
+      <div class="arrow"><span class="arrow-label">Submit form</span></div>
+      <div class="flow-screen">
+        <div class="label">3. Onboarding</div>
+        <div class="bar dark"></div>
+        <div class="bar"></div>
+        <div class="blk"></div>
+      </div>
+    </div>
+
+    <div class="flow-row">
+      <div class="flow-screen">
+        <div class="label">1. Landing</div>
+        <div class="bar dark"></div>
+        <div class="bar"></div>
+        <div class="blk"></div>
+      </div>
+      <div class="arrow"><span class="arrow-label">Click "Features"</span></div>
+      <div class="flow-screen">
+        <div class="label">4. Features</div>
+        <div class="bar dark"></div>
+        <div class="bar"></div>
+        <div class="blk"></div>
+      </div>
+      <div class="arrow back"><span class="arrow-label">Back to landing</span></div>
+      <div class="flow-screen">
+        <div class="label">1. Landing</div>
+        <div class="bar dark"></div>
+        <div class="bar"></div>
+        <div class="blk"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <strong>Structure notes.</strong> Navigation has five items, the hero carries one primary and one secondary action, and feature cards use one repeated pattern (icon, title, short description). Social proof sits above the footer so visitors see evidence before the final navigation. Each flow path starts and ends on a screen already shown above, so the diagram can be read as a closed loop.
+  </div>
+
+</body>
+</html>
